@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hotel Agent AI – Learning Project
 
-## Getting Started
+This project is a **learning-focused AI agent system** built with Next.js, Node.js, and OpenAI's LLM.  
+It demonstrates **spec-driven development** with AI-assisted coding using GitHub Copilot Agent Mode.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- LLM-driven agent loop for hotel booking
+- Tool-driven architecture:
+  - `searchHotels` and `bookHotel` implemented in-memory
+- API route to trigger the agent: `/api/agent`
+- Incremental and spec-driven development workflow
+- Full logging of tool calls for learning
+- Clear separation between agent, tools, and API
+
+---
+
+## Project Structure
+```
+hotel-agent-ai/
+├─ docs/
+│   ├─ sdd.md           # System spec
+├─ src/
+│   ├─ lib/
+│   │   ├─ tools.ts
+│   │   ├─ toolDefinitions.ts
+│   │   └─ agent.ts
+│   ├─ app/
+│   │   └─ api/
+│   │       └─ agent/
+│   │           └─ route.ts
+├─ AGENTS.md             # Agent behavior rules for Copilot
+├─ package.json
+├─ tsconfig.json
+├─ .gitignore
+└─ README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js >= 18
+- npm
+- OpenAI API key
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone the repo:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+git clone https://github.com/YOUR_USERNAME/hotel-agent-ai.git
+cd hotel-agent-ai
+pnpm install
+```
 
-## Deploy on Vercel
+2. Create .env.local:
+```
+OPENAI_API_KEY=sk-xxxx
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Running the Project
+pnpm dev
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The agent API is available at:
+```
+POST http://localhost:3000/api/agent
+Content-Type: application/json
+{
+  "message": "Book a cheap hotel in Vancouver next weekend",
+  "userId": "u1"
+}
+```
+Check console logs for step-by-step tool execution.
+
+## Learning Workflow
+	•	Use AGENTS.md to guide Copilot Agent
+	•	Implement features incrementally
+	•	Tools → Agent → API → UI
+	•	Keep specs (docs/sdd.md) in sync with implementation
