@@ -81,4 +81,4 @@ Check console logs for step-by-step tool execution.
 	•	Use AGENTS.md to guide Copilot Agent
 	•	Implement features incrementally
 	•	Tools → Agent → API → UI
-	•	Keep specs (docs/sdd.md) in sync with implementation
+	•	Keep specs (docs/spec.md) in sync with implementation
